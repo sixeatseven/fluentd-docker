@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  fluentd:
+    image: vladeram/fluentd-docker:latest
+    container_name: fluentd-app
+    networks:
+      - fluentd_backend
+    volumes:
+      - ./fluent.conf:/fluentd/etc/fluent.conf
+      - ./ssl:/fluentd/etc/ssl
+    ports:
+      - 24224:24224
+      
+networks:
+  fluentd_backend:
+    name: fluentd_backend
